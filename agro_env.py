@@ -102,11 +102,18 @@ while not done:
     b = (x_coord+l*np.cos(angle2), y_coord+l*np.sin(angle2))
     c = (x_coord+l*np.cos(angle2)+d*np.cos(angle2+angle), y_coord+l*np.sin(angle2)+d*np.sin(angle+angle2))
 
+    dist = (vel**2)/(2*9.81*.8)
+    p_x = dist * np.cos(angle2)
+    p_y = dist * np.cos(angle2)
+
     for (p1,p2) in obs:
         if intersect(a,b,p1,p2)==True:
             print("You crashed agro")
             print("vel= {}, angle= {}".format(vel, achange))
             done = True
+        elif intersect(a,(p_x,p_y),p1,p2)==True:
+            print("You were about to crash")
+            vel = 0
 
     # if crash(x_coord,y_coord)==True:
     #     print("You crashed agro!")
